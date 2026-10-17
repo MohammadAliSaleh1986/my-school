@@ -8,18 +8,18 @@ import { site } from "@/config/site";
 
 type Sort = "featured" | "newest" | "price-asc" | "price-desc";
 interface CatalogSearch {
-  q?: string; subject?: Subject; age?: AgeGroup; level?: Difficulty; format?: Format; maxPrice?: number; sort?: Sort;
+  q?: string | undefined; subject?: Subject | undefined; age?: AgeGroup | undefined; level?: Difficulty | undefined; format?: Format | undefined; maxPrice?: number | undefined; sort?: Sort | undefined;
 }
 
 export const Route = createFileRoute("/courses/")({
   validateSearch: (s: Record<string, unknown>): CatalogSearch => ({
-    q: typeof s.q === "string" ? s.q : undefined,
-    subject: subjects.some((x) => x.id === s.subject) ? (s.subject as Subject) : undefined,
-    age: typeof s.age === "string" ? (s.age as AgeGroup) : undefined,
-    level: typeof s.level === "string" ? (s.level as Difficulty) : undefined,
-    format: typeof s.format === "string" ? (s.format as Format) : undefined,
-    maxPrice: s.maxPrice ? Number(s.maxPrice) : undefined,
-    sort: typeof s.sort === "string" ? (s.sort as Sort) : undefined,
+    q: typeof s["q"] === "string" ? s["q"] : undefined,
+    subject: subjects.some((x) => x.id === s["subject"]) ? (s["subject"] as Subject) : undefined,
+    age: typeof s["age"] === "string" ? (s["age"] as AgeGroup) : undefined,
+    level: typeof s["level"] === "string" ? (s["level"] as Difficulty) : undefined,
+    format: typeof s["format"] === "string" ? (s["format"] as Format) : undefined,
+    maxPrice: s["maxPrice"] ? Number(s["maxPrice"]) : undefined,
+    sort: typeof s["sort"] === "string" ? (s["sort"] as Sort) : undefined,
   }),
   head: () => ({
     meta: [
