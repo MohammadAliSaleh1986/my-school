@@ -8,3 +8,7 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Public course data is loaded through a publishable-key server function and TanStack Query; bundled images are resolved by subject so course storage remains deployment-independent.
+- Student profiles use owner-scoped RLS and authenticated server functions; protected pages live under the client-only managed authentication layout.
+- A single root account provider owns auth events and cache invalidation; sign-out cancels and clears queries before ending the session.

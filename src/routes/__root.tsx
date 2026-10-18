@@ -15,6 +15,7 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { site } from "@/config/site";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
+import { AccountProvider } from "@/hooks/use-account";
 
 function NotFoundComponent() {
   return (
@@ -119,12 +120,14 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
+      <AccountProvider>
       <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:p-3">Skip to content</a>
       <SiteHeader />
       <main id="main">
         <Outlet />
       </main>
       <SiteFooter />
+      </AccountProvider>
     </QueryClientProvider>
   );
 }
