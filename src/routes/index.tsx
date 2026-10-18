@@ -3,11 +3,14 @@ import { Compass, CreditCard, PlayCircle, PenLine, TrendingUp, Code2, Bot, Walle
 import { Button } from "@/components/ui/button";
 import { CourseCard } from "@/components/site/CourseCard";
 import { FaqList } from "@/components/site/FaqList";
-import { courses, generalFaqs, subjects } from "@/data/catalog";
+import { generalFaqs, subjects } from "@/data/catalog";
+import { useSuspenseQuery } from "@tanstack/react-query";
+import { catalogQuery } from "@/lib/catalog-query";
 import { site } from "@/config/site";
 import hero from "@/assets/hero.jpg";
 
 export const Route = createFileRoute("/")({
+  loader: ({ context }) => context.queryClient.ensureQueryData(catalogQuery),
   head: () => ({
     meta: [
       { title: `${site.brandName} — Learn coding, robotics & finance at your own pace` },
@@ -29,6 +32,7 @@ const steps = [
 ];
 
 function Home() {
+  const { data: courses } = useSuspenseQuery(catalogQuery);
   const featured = courses.filter((c) => c.featured);
   return (
     <>
@@ -44,7 +48,7 @@ function Home() {
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Button asChild size="lg"><Link to="/courses">Explore courses</Link></Button>
-              <Button asChild size="lg" variant="outline"><Link to="/pricing">Create an account</Link></Button>
+              <Button asChild size="lg" variant="outline"><Link to="/auth" search={{ mode: "signup" }}>Create an account</Link></Button>
             </div>
           </div>
           <img src={hero} alt="Student learning online with a laptop and robotics kit" width={1536} height={1024} className="rounded-2xl shadow-lift" />

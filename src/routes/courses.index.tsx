@@ -3,7 +3,9 @@ import { useMemo } from "react";
 import { Search } from "lucide-react";
 import { CourseCard } from "@/components/site/CourseCard";
 import { PageHeader } from "@/components/site/PageHeader";
-import { courses, subjects, type AgeGroup, type Difficulty, type Format, type Subject } from "@/data/catalog";
+import { subjects, type AgeGroup, type Difficulty, type Format, type Subject } from "@/data/catalog";
+import { useSuspenseQuery } from "@tanstack/react-query";
+import { catalogQuery } from "@/lib/catalog-query";
 import { site } from "@/config/site";
 
 type Sort = "featured" | "newest" | "price-asc" | "price-desc";
@@ -12,6 +14,7 @@ interface CatalogSearch {
 }
 
 export const Route = createFileRoute("/courses/")({
+  loader: ({ context }) => context.queryClient.ensureQueryData(catalogQuery),
   validateSearch: (s: Record<string, unknown>): CatalogSearch => ({
     q: typeof s["q"] === "string" ? s["q"] : undefined,
     subject: subjects.some((x) => x.id === s["subject"]) ? (s["subject"] as Subject) : undefined,
@@ -35,6 +38,7 @@ export const Route = createFileRoute("/courses/")({
 const selectCls = "h-10 rounded-lg border border-input bg-background px-3 text-sm";
 
 function Catalog() {
+  const { data: courses } = useSuspenseQuery(catalogQuery);
   const s = Route.useSearch();
   const navigate = useNavigate({ from: "/courses/" });
   const set = (patch: Partial<CatalogSearch>) => navigate({ search: (p) => ({ ...p, ...patch }), replace: true });
@@ -52,7 +56,7 @@ function Catalog() {
       : sort === "price-asc" ? a.price - b.price
       : sort === "price-desc" ? b.price - a.price
       : Number(b.featured) - Number(a.featured));
-  }, [s]);
+  }, [s, courses]);
 
   return (
     <>

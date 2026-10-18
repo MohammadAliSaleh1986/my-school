@@ -2,11 +2,13 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { BarChart3, CheckCircle2, Clock, Lock, PlayCircle, Users, BookOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { FaqList } from "@/components/site/FaqList";
-import { courseMinutes, courses, formatDuration, lessonCount, subjects } from "@/data/catalog";
+import { courseMinutes, formatDuration, lessonCount, subjects } from "@/data/catalog";
+import { catalogQuery } from "@/lib/catalog-query";
 import { formatPrice, site } from "@/config/site";
 
 export const Route = createFileRoute("/courses/$slug")({
-  loader: ({ params }) => {
+  loader: async ({ params, context }) => {
+    const courses = await context.queryClient.ensureQueryData(catalogQuery);
     const course = courses.find((c) => c.slug === params.slug);
     if (!course) throw notFound();
     return { course };
