@@ -8,6 +8,13 @@
       "when": 1792314841870,
       "tag": "0000_student_profiles_and_courses",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1792642668961,
+      "tag": "0001_seed_sample_courses",
+      "breakpoints": true
     }
   ]
 }
