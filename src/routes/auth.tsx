@@ -9,18 +9,21 @@ import "@lovable.dev/cloud-auth-js/styles.css";
 import { useAccount } from "@/hooks/use-account";
 import { pageMeta } from "@/lib/page-meta";
 
+type AuthSearch = { redirect?: string | undefined; mode?: "signup" | "signin" | undefined };
+
 export const Route = createFileRoute("/auth")({
-  validateSearch: (s: Record<string, unknown>) => ({
-    redirect: typeof s["redirect"] === "string" && s["redirect"].startsWith("/") && !s["redirect"].startsWith("//") ? s["redirect"] : "/account",
-    mode: s["mode"] === "signup" ? "signup" : "signin",
+  validateSearch: (s: Record<string, unknown>): AuthSearch => ({
+    redirect: typeof s["redirect"] === "string" && s["redirect"].startsWith("/") && !s["redirect"].startsWith("//") ? s["redirect"] : undefined,
+    mode: s["mode"] === "signup" ? "signup" : undefined,
   }),
   head: () => ({ meta: pageMeta("Student sign-in", "Sign in or create your student account.") }),
   component: AuthPage,
 });
 
 function AuthPage() {
-  const search = Route.useSearch();
-  const [mode, setMode] = useState(search.mode);
+  const raw = Route.useSearch();
+  const search = { redirect: raw.redirect ?? "/account", mode: raw.mode ?? "signin" };
+  const [mode, setMode] = useState<"signup" | "signin" | "forgot">(search.mode);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
