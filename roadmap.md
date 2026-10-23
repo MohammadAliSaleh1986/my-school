@@ -6,10 +6,10 @@
 - [x] Verify saved profiles and authenticated access (tested end to end: sign-up, email confirmation, sign-in, profile save, sign-out).
 
 # Stage 3
-- [ ] Interview the user before building (first question skipped; resume when the user is ready).
-- [ ] Payments and checkout (blocked: needs a paid workspace plan, final prices, and interview answers).
+- [x] Interview the user about the admin area and payments.
+- [ ] Request-access flow: student uploads a Whish receipt + note; admin approves (waiting on user's go-ahead for the plan).
 - [ ] App emails (needs the user's own web address for sending).
 - [x] Delete all test student accounts and the hotmail account.
 - [x] Make mohammadalisalehg@gmail.com the admin.
-- [ ] Admin area: add/edit courses, upload videos, set prices (interviewing first).
-- [ ] Admin approval of student payments/subscriptions and course access (interviewing first).
+- [ ] Admin area: add/edit courses, upload videos, set prices (waiting on user's go-ahead for the plan).
+- [ ] Admin approval of student payments/subscriptions and course access (waiting on user's go-ahead for the plan).
