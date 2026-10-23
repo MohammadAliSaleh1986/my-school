@@ -6,5 +6,6 @@
 - [x] Verify saved profiles and authenticated access (tested end to end: sign-up, email confirmation, sign-in, profile save, sign-out).
 
 # Stage 3
-- [ ] Payments and checkout (waiting on final prices).
+- [ ] Interview the user (one question at a time, max 10) and sum up the plan before building.
+- [ ] Payments and checkout (waiting on interview answers and final prices).
 - [ ] Transactional email.
