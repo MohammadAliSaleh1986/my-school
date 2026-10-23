@@ -12,3 +12,4 @@
 - Public course data is loaded through a publishable-key server function and TanStack Query; bundled images are resolved by subject so course storage remains deployment-independent.
 - Student profiles use owner-scoped RLS and authenticated server functions; protected pages live under the client-only managed authentication layout.
 - A single root account provider owns auth events and cache invalidation; sign-out cancels and clears queries before ending the session.
+- Roles live only in public.user_roles and are checked through the security-definer public.has_role(); admin permissions are enforced by RLS and server-side role checks, never by profile fields or client state.

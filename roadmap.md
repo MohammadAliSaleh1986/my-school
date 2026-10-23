@@ -9,3 +9,7 @@
 - [ ] Interview the user before building (first question skipped; resume when the user is ready).
 - [ ] Payments and checkout (blocked: needs a paid workspace plan, final prices, and interview answers).
 - [ ] App emails (needs the user's own web address for sending).
+- [x] Delete all test student accounts and the hotmail account.
+- [x] Make mohammadalisalehg@gmail.com the admin.
+- [ ] Admin area: add/edit courses, upload videos, set prices (interviewing first).
+- [ ] Admin approval of student payments/subscriptions and course access (interviewing first).
