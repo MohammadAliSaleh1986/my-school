@@ -6,6 +6,6 @@
 - [x] Verify saved profiles and authenticated access (tested end to end: sign-up, email confirmation, sign-in, profile save, sign-out).
 
 # Stage 3
-- [ ] Interview the user (one question at a time, max 10) and sum up the plan before building.
-- [ ] Payments and checkout (waiting on interview answers and final prices).
-- [ ] Transactional email.
+- [ ] Interview the user before building (first question skipped; resume when the user is ready).
+- [ ] Payments and checkout (blocked: needs a paid workspace plan, final prices, and interview answers).
+- [ ] App emails (needs the user's own web address for sending).
